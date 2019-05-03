@@ -1,9 +1,9 @@
-# Check if Packer is functionnal
+# Check if Amazon ssm agent is functionnal
 
 amazon_ssm_package = 'amazon-ssm-agent'
 amazon_ssm_service = 'amazon-ssm-agent'
 
-control 'amazon-ssm-01' do
+control 'ssm-01' do
   impact 1.0
   title 'Amazon ssm install'
   desc 'Amazon ssm agent should be installed'
@@ -12,7 +12,7 @@ control 'amazon-ssm-01' do
   end
 end
 
-control 'amazon-ssm-02' do
+control 'ssm-02' do
   impact 1.0
   title 'Amazon ssm service'
   desc 'Amazon ssm agent service should be started and enabled'

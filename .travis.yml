@@ -54,7 +54,6 @@ env:
 #--------------------------------
   - distribution: oraclelinux
     version: "7"
-    playbook: amazon-ssm-latest
   - distribution: oraclelinux
     version: "6"
 

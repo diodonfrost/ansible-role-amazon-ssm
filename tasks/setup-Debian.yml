@@ -1,0 +1,13 @@
+---
+# Install aws ssm agent on Debian family system
+
+- name: Install aws ssm agent on Debian family system
+  apt:
+    deb: "{{ ssm_package_url }}"
+    state: present
+
+- name: Manage aws ssm agent service
+  service:
+    name: "{{ ssm_service }}"
+    state: started
+    enabled: yes

@@ -1,0 +1,20 @@
+---
+# Install aws ssm agent on RedHat family system
+
+- name: Install aws ssm agent on RedHat family system
+  yum:
+    name: "{{ ssm_package_url }}"
+    state: present
+  when: ansible_pkg_mgr == "yum"
+
+- name: Install aws ssm agent on Fedora family system
+  dnf:
+    name: "{{ ssm_package_url }}"
+    state: present
+  when: ansible_pkg_mgr == "dnf"
+
+- name: Manage aws ssm agent service on RedHat family system
+  service:
+    name: "{{ ssm_service }}"
+    state: started
+    enabled: yes

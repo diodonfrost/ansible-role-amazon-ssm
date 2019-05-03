@@ -1,2 +1,8 @@
 ---
 # tasks file for ansible-role-amazon-ssm
+
+- name: Include OS specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Install aws ssm agent
+  include_tasks: "setup-{{ ansible_os_family }}.yml"

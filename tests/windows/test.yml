@@ -1,0 +1,5 @@
+---
+- name: ansible-role-java
+  hosts: windows-machines
+  roles:
+    - ansible-role-java

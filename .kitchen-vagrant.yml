@@ -1,0 +1,43 @@
+---
+# we use vagrant as plateform
+driver:
+  name: vagrant
+
+# Ansible will be our provisioner
+provisioner:
+  name: ansible_playbook
+  hosts: localhost
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
+  require_ansible_omnibus: false
+  idempotency_test: true
+
+# We use Inspec as testing framework
+verifier:
+  name: inspec
+  inspec_tests:
+    - path: tests/inspec
+
+# Build platforms
+platforms:
+  # Standard Linux
+  - name: centos-7
+  - name: centos-6
+  - name: fedora-28
+  - name: fedora-27
+  - name: fedora-26
+  - name: ubuntu-18.04
+  - name: ubuntu-17.10
+  - name: ubuntu-16.04
+  - name: ubuntu-14.04
+  - name: debian-9
+  - name: debian-8
+  - name: oraclelinux-7
+    driver:
+      box: bento/oracle-7
+  - name: oraclelinux-6
+    driver:
+      box: bento/oracle-6
+
+suites:
+  - name: default

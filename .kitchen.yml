@@ -118,5 +118,9 @@ platforms:
       run_command: /sbin/init
       platform: centos
 
+# Define playbook to use
 suites:
   - name: default
+    provisioner:
+      name: ansible_playbook
+      playbook: tests/test.yml

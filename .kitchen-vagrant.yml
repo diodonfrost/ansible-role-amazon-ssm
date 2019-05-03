@@ -39,5 +39,9 @@ platforms:
     driver:
       box: bento/oracle-6
 
+# Define playbook to use
 suites:
   - name: default
+    provisioner:
+      name: ansible_playbook
+      playbook: tests/test.yml

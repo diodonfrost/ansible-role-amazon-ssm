@@ -118,6 +118,17 @@ platforms:
       run_command: /sbin/init
       platform: centos
 
+  # Opensuse
+  - name: opensuse-13.2
+    driver:
+      image: diodonfrost/opensuse-13.2-ansible
+      run_command: /usr/lib/systemd/systemd
+      platform: opensuse
+      provision_command:
+        - zypper refresh
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd
+
 # Define playbook to use
 suites:
   - name: default

@@ -65,6 +65,14 @@ env:
   - distribution: amazonlinux
     version: "1"
 
+#--------------------------------
+#
+# Opensuse
+#
+#--------------------------------
+  - distribution: opensuse
+    version: "13.2"
+
 before_install:
   # Build docker container
   - 'sudo docker pull diodonfrost/${distribution}-${version}-ansible:latest'

@@ -1,0 +1,17 @@
+---
+# Install aws ssm agent on Windows family system
+
+- name: Install aws ssm agent on Windows family system
+  win_package:
+    path: "{{ ssm_package_url }}"
+    product_id: amazon-ssm-agent
+    creates_path: C:\Program Files\Amazon\SSM\amazon-ssm-agent.exe
+    arguments: /S
+    state: present
+
+
+- name: Manage aws ssm agent service on Windows family system
+  win_service:
+    name: "{{ ssm_service }}"
+    start_mode: auto
+    state: started

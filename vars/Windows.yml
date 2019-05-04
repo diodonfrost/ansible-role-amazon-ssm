@@ -1,0 +1,5 @@
+---
+# Variable for Windows system
+
+ssm_package_url: https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/windows_amd64/AmazonSSMAgentSetup.exe
+ssm_service: AmazonSSMAgent

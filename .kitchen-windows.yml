@@ -58,35 +58,5 @@ platforms:
     transport:
       name: winrm
 
-  # Target Windows 2008 R2 to test
-  - name: windows-2k8r2
-    driver:
-      box: diodonfrost/windows-2k8r2
-      provision: true
-      communicator: winrm
-      network:
-        - [ 'private_network', { ip: '172.28.128.13' } ]
-      customize:
-        memory: 2048
-      vagrantfiles:
-        - tests/vagrant/vagrant_windows_target.rb
-    transport:
-      name: winrm
-
-  # Target Windows 2008 R2 to test
-  - name: windows-8.1
-    driver:
-      box: diodonfrost/windows-8.1
-      provision: true
-      communicator: winrm
-      network:
-        - [ 'private_network', { ip: '172.28.128.14' } ]
-      customize:
-        memory: 2048
-      vagrantfiles:
-        - tests/vagrant/vagrant_windows_target.rb
-    transport:
-      name: winrm
-
 suites:
   - name: default

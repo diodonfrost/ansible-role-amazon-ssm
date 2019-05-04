@@ -1,5 +1,5 @@
 ---
-- name: ansible-role-java
+- name: ansible-role-amazon-ssm
   hosts: windows-machines
   roles:
-    - ansible-role-java
+    - ansible-role-amazon-ssm

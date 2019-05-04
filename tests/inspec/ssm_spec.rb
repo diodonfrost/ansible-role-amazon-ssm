@@ -16,8 +16,14 @@ control 'ssm-02' do
   impact 1.0
   title 'Amazon ssm service'
   desc 'Amazon ssm agent service should be started and enabled'
-  describe systemd_service(amazon_ssm_service) do
-    it { should be_enabled }
-    it { should be_running }
+  describe.one do
+    describe service(amazon_ssm_service) do
+      it { should be_enabled }
+      it { should be_running }
+    end
+    describe upstart_service(amazon_ssm_service) do
+      it { should be_enabled }
+      it { should be_running }
+    end
   end
 end

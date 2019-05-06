@@ -1,13 +1,34 @@
 ---
 # Install aws ssm agent on Debian family system
 
-- name: Install aws ssm agent on Debian family system
+- name: Install with apt aws ssm agent on Debian family system
   apt:
     deb: "{{ ssm_package_url }}"
     state: present
+  when:
+    - ansible_distribution_major_version|int < 18
 
 - name: Manage aws ssm agent service
   service:
     name: "{{ ssm_service }}"
     state: started
     enabled: yes
+  when:
+    - ansible_distribution_major_version|int < 18
+
+- name: Install with snap aws ssm agent on Debian family system
+  command: snap install amazon-ssm-agent --classic
+  args:
+    creates: /snap/bin/amazon-ssm-agent.ssm-cli
+  when:
+    - ansible_distribution == "Ubuntu"
+    - ansible_distribution_major_version|int >= 18
+
+- name: Manage snap aws ssm agent service
+  service:
+    name: snap.amazon-ssm-agent.amazon-ssm-agent.service
+    state: started
+    enabled: yes
+  when:
+    - ansible_distribution == "Ubuntu"
+    - ansible_distribution_major_version|int >= 18

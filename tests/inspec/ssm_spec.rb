@@ -2,6 +2,7 @@
 
 amazon_ssm_package = 'amazon-ssm-agent'
 amazon_ssm_service = 'amazon-ssm-agent'
+amazon_ssm_service = 'snap.amazon-ssm-agent.amazon-ssm-agent.service' if os.name == 'ubuntu' && os[:release].to_i >= 18
 
 control 'ssm-01' do
   impact 1.0

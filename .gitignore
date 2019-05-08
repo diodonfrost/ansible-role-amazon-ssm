@@ -1,4 +1,6 @@
 Gemfile.lock
+inspec.lock
 .kitchen
 tests/inspec/inspec.lock
 Dockerfile-kitchen*
+*.retry

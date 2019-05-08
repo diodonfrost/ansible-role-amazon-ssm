@@ -3,7 +3,9 @@
 driver:
   name: docker
   privileged: true
-  volume: /sys/fs/cgroup:/sys/fs/cgroup
+  volume:
+    - /sys/fs/cgroup:/sys/fs/cgroup
+    - /dev/fuse:/dev/fuse
 
 # Ansible will be our provisioner
 provisioner:

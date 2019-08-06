@@ -1,14 +1,14 @@
 # ansible-role-amazon-ssm
 
 [![Build Status](https://travis-ci.org/diodonfrost/ansible-role-amazon-ssm.svg?branch=master)](https://travis-ci.org/diodonfrost/ansible-role-amazon-ssm)
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.amazon-ssm-660198.svg)](https://galaxy.ansible.com/diodonfrost/amazon_ssm)
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.amazon_ssm-660198.svg)](https://galaxy.ansible.com/diodonfrost/amazon_ssm)
 
 This role provide a compliance for install amazon-ssm on your target host.
 
 ## Requirements
 
 This role was developed using Ansible 2.5 Backwards compatibility is not guaranteed.
-Use `ansible-galaxy install diodonfrost.amazon-ssm` to install the role on your system.
+Use `ansible-galaxy install diodonfrost.amazon_ssm` to install the role on your system.
 
 Supported platforms:
 
@@ -63,14 +63,15 @@ None
 
 ## Example Playbook
 
-This is a sample playbook file for deploying the Ansible Galaxy amazon-ssm role in a localhost and installing latest amazon-ssm version.
+This is a sample playbook file for deploying the Ansible Galaxy 
+role in a localhost and installing latest amazon-ssm version.
 
 ```yaml
 ---
 - hosts: localhost
   become: true
   roles:
-    - role: diodonfrost.amazon-ssm
+    - role: diodonfrost.amazon_ssm
 ```
 
 ## Local Testing
@@ -113,7 +114,7 @@ kitchen verify default-centos-7
 
 ```shell
 # Specify kitchen file on Linux
-export KITCHEN_YAML=.kitchen-amazon-ssm.yml
+export KITCHEN_YAML=.kitchen-vagrant.yml
 
 # fast test on one machine
 kitchen test default-centos-7

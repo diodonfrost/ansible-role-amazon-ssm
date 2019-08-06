@@ -1,7 +1,7 @@
 # ansible-role-amazon-ssm
 
 [![Build Status](https://travis-ci.org/diodonfrost/ansible-role-amazon-ssm.svg?branch=master)](https://travis-ci.org/diodonfrost/ansible-role-amazon-ssm)
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.amazon-ssm-660198.svg)](https://galaxy.ansible.com/diodonfrost/amazon-ssm)
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.amazon-ssm-660198.svg)](https://galaxy.ansible.com/diodonfrost/amazon_ssm)
 
 This role provide a compliance for install amazon-ssm on your target host.
 

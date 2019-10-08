@@ -54,6 +54,8 @@ env:
 #
 #--------------------------------
   - distribution: debian
+    version: "10"
+  - distribution: debian
     version: "9"
   - distribution: debian
     version: "8"

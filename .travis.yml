@@ -22,6 +22,16 @@ env:
 #
 #--------------------------------
   - distribution: fedora
+    version: "32"
+  - distribution: fedora
+    version: "31" 
+  - distribution: fedora
+    version: "30"
+  - distribution: fedora
+    version: "29"
+  - distribution: fedora
+    version: "28"
+  - distribution: fedora
     version: "27"
   - distribution: fedora
     version: "26"

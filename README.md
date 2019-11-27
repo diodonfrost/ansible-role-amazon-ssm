@@ -34,6 +34,7 @@ Supported platforms:
     - jessie
 - name: Ubuntu
   versions:
+    - disco dingo
     - bionic
     - xenial
     - trusty

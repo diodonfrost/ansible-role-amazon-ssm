@@ -9,96 +9,75 @@ env:
 # CentOS
 #
 #-----------------------------------------------
-  - distribution: centos
-    version: "8"
-  - distribution: centos
-    version: "7"
-  - distribution: centos
-    version: "6"
+  - distribution: centos-8
+  - distribution: centos-7
+  - distribution: centos-6
 
 #--------------------------------
 #
 # Fedora
 #
 #--------------------------------
-  - distribution: fedora
-    version: "32"
-  - distribution: fedora
-    version: "31" 
-  - distribution: fedora
-    version: "30"
-  - distribution: fedora
-    version: "29"
-  - distribution: fedora
-    version: "28"
-  - distribution: fedora
-    version: "27"
-  - distribution: fedora
-    version: "26"
+  - distribution: fedora-32
+  - distribution: fedora-31
+  - distribution: fedora-30
+  - distribution: fedora-29
+  - distribution: fedora-28
+  - distribution: fedora-27
+  - distribution: fedora-26
 
 #--------------------------------
 #
 # Ubuntu
 #
 #--------------------------------
-  - distribution: ubuntu
-    version: "20.04"
-  - distribution: ubuntu
-    version: "19.04"
-  - distribution: ubuntu
-    version: "18.04"
-  - distribution: ubuntu
-    version: "16.04"
+  - distribution: ubuntu-20.04
+  - distribution: ubuntu-20.04
+  - distribution: ubuntu-18.04
+  - distribution: ubuntu-16.04
 
 #--------------------------------
 #
 # Debian
 #
 #--------------------------------
-  - distribution: debian
-    version: "10"
-  - distribution: debian
-    version: "9"
-  - distribution: debian
-    version: "8"
+  - distribution: debian-10
+  - distribution: debian-9
+  - distribution: debian-8
 
 #--------------------------------
 #
 # Oraclelinux
 #
 #--------------------------------
-  - distribution: oraclelinux
-    version: "7"
-  - distribution: oraclelinux
-    version: "6"
+  - distribution: oraclelinux-8
+  - distribution: oraclelinux-7
+  - distribution: oraclelinux-6
 
 #--------------------------------
 #
 # Amazonlinux
 #
 #--------------------------------
-  - distribution: amazonlinux
-    version: "2"
-  - distribution: amazonlinux
-    version: "1"
+  - distribution: amazonlinux-2
+  - distribution: amazonlinux-1
 
 #--------------------------------
 #
 # Opensuse
 #
 #--------------------------------
-  - distribution: opensuse
-    version: "13.2"
+  - distribution: opensuse-13.2
 
 before_install:
   # Build docker container
-  - 'sudo docker pull diodonfrost/${distribution}-${version}-ansible:latest'
+  - 'sudo docker pull diodonfrost/${distribution}-ansible:latest'
 
 script:
   - container_id=$(mktemp)
 
   # Run container and mount ansible role with it
-  - 'sudo docker run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro -v /dev/fuse:/dev/fuse --volume="${PWD}":/etc/ansible/roles/ansible-role-amazon-ssm:ro diodonfrost/${distribution}-${version}-ansible:latest > "${container_id}"'
+  - 'sudo docker run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro -v /dev/fuse:/dev/fuse --volume="${PWD}":/etc/ansible/roles/ansible-role-amazon-ssm:ro diodonfrost/${distribution}-ansible:latest > "${container_id}"'
 
   # Check syntax
   - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-amazon-ssm/tests/test.yml --syntax-check'

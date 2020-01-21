@@ -1,2 +1,5 @@
 ---
 # defaults file for ansible-role-amazon-ssm
+
+# Enable or disable sudo access for ssm-user on Linux instances
+allow_sudo: true

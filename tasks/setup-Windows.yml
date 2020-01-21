@@ -9,7 +9,6 @@
     arguments: /S
     state: present
 
-
 - name: Windows | Manage aws ssm agent service
   win_service:
     name: "{{ ssm_service }}"

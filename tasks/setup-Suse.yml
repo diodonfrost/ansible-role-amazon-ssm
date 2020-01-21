@@ -12,3 +12,9 @@
     name: "{{ ssm_service }}"
     state: started
     enabled: yes
+
+- name: Suse | Configure sudo with aws ssm agent
+  copy:
+    content: "{{ allow_sudo | ternary('ssm-user ALL=(ALL) NOPASSWD:ALL', '#User rules for ssm-user') }}"
+    dest: /etc/sudoers.d/ssm-agent-users
+    mode: '0440'

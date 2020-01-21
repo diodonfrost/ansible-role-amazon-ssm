@@ -31,3 +31,13 @@ control 'ssm-02' do
     end
   end
 end
+
+control 'ssm-03' do
+  impact 1.0
+  title 'Amazon ssm sudoers'
+  desc 'Sudo file used by Amazon ssm user should be present'
+  describe file('/etc/sudoers.d/ssm-agent-users') do
+    it { should exist }
+    its('mode') { should cmp '0440' }
+  end
+end

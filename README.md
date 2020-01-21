@@ -40,6 +40,7 @@ Supported platforms:
     - trusty
 - name: OracleLinux
   versions:
+    - 8
     - 7
     - 6
 - name: Amazon
@@ -61,6 +62,9 @@ This role does not have a variable
 ---
 # defaults file for ansible-role-amazon-ssm
 
+# Enable or disable sudo access for ssm-user on Linux instances
+allow_sudo: true
+
 ```
 
 ## Dependencies
@@ -78,6 +82,17 @@ role in a localhost and installing latest amazon-ssm version.
   become: true
   roles:
     - role: diodonfrost.amazon_ssm
+```
+
+Remove sudo access to the ssm-user account on Linux instances
+```yaml
+---
+- hosts: localhost
+  become: true
+  roles:
+    - role: diodonfrost.amazon_ssm
+      vars:
+        allow_sudo: false
 ```
 
 ## Local Testing

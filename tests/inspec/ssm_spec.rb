@@ -13,6 +13,9 @@ control 'ssm-01' do
     describe command('snap info amazon-ssm-agent') do
       its('exit_status') { should eq 0 }
     end
+    describe file('/usr/bin/amazon-ssm-agent') do
+      it { should exist }
+    end
   end
 end
 

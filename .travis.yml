@@ -69,6 +69,13 @@ env:
 #--------------------------------
   - distribution: opensuse-13.2
 
+#--------------------------------
+#
+# Archlinux
+#
+#--------------------------------
+  - distribution: archlinux-rolling
+
 before_install:
   # Build docker container
   - 'sudo docker pull diodonfrost/${distribution}-ansible:latest'

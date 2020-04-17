@@ -68,6 +68,8 @@ env:
 #
 #--------------------------------
   - distribution: opensuse-13.2
+  - distribution: opensuse-15
+  - distribution: opensuse-15.1
 
 #--------------------------------
 #

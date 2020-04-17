@@ -20,8 +20,6 @@ Supported platforms:
     - 6
 - name: Fedora
   versions:
-    - 32
-    - 31
     - 30
     - 29
     - 28
@@ -34,24 +32,25 @@ Supported platforms:
     - jessie
 - name: Ubuntu
   versions:
-    - disco dingo
+    - disco
     - bionic
     - xenial
     - trusty
-- name: OracleLinux
-  versions:
-    - 8
-    - 7
-    - 6
 - name: Amazon
   versions:
     - 2017.12
     - 2016.03
     - 2013.09
+- name: opensuse
+  versions:
+    - 13.2
+    - 15.0
+    - 15.1
 - name: Windows
   versions:
     - 2016
     - 2012R2
+    - 2008R2
 ```
 
 ## Role Variables

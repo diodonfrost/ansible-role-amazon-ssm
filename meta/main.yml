@@ -36,6 +36,11 @@ galaxy_info:
         - 2017.12
         - 2016.03
         - 2013.09
+    - name: opensuse
+      versions:
+        - 13.2
+        - 15.0
+        - 15.1
     - name: Windows
       versions:
         - 2016

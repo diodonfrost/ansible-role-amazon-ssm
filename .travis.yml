@@ -15,7 +15,6 @@ env:
   - distribution: fedora-27
   - distribution: fedora-26
   - distribution: ubuntu-20.04
-  - distribution: ubuntu-20.04
   - distribution: ubuntu-18.04
   - distribution: ubuntu-16.04
   - distribution: debian-10
@@ -30,10 +29,6 @@ env:
   - distribution: opensuse-15
   - distribution: opensuse-15.1
   - distribution: archlinux-rolling
-
-before_install:
-  # Build docker container
-  - 'sudo docker pull diodonfrost/${distribution}-ansible:latest'
 
 script:
   - container_id=$(mktemp)
@@ -56,9 +51,6 @@ script:
 
   # Test role
   - 'inspec exec tests/inspec --chef-license accept-silent -t docker://$(cat ${container_id})'
-
-  # Delete container
-  - 'sudo docker rm -f "$(cat ${container_id})"'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

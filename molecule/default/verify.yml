@@ -4,10 +4,26 @@
 - name: Verify
   hosts: all
   tasks:
+    - set_fact:
+        amazon_ssm_service: "amazon-ssm-agent"
+
+    - set_fact:
+        amazon_ssm_service: "snap.amazon-ssm-agent.amazon-ssm-agent.service"
+      when:
+        - ansible_distribution == "Ubuntu"
+        - ansible_distribution_version|int >= 18
+
     - name: Linux | Amazon ssm agent should be installed
       package:
         name: amazon-ssm-agent
         state: present
+      when: ansible_distribution != "Archlinux"
+      register: ssm_package_result
+
+    - name: Archlinux | Amazon ssm agent should be installed
+      stat:
+        path: /usr/bin/amazon-ssm-agent
+      when: ansible_distribution == "Archlinux"
       register: ssm_package_result
 
     - name: Linux | Amazon ssm agent service should be started and enabled

@@ -1,0 +1,31 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Linux | Amazon ssm agent should be installed
+      package:
+        name: amazon-ssm-agent
+        state: present
+      register: ssm_package_result
+
+    - name: Linux | Amazon ssm agent service should be started and enabled
+      service:
+        name: amazon-ssm-agent
+        state: started
+        enabled: yes
+      register: ssm_service_result
+
+    - name: Linux | Sudo file used by Amazon ssm user should be present
+      stat:
+        path: /etc/sudoers.d/ssm-agent-users
+      register: ssm_sudo_result
+
+    - name: Linux | Verify commands outputs
+      assert:
+        that:
+          - ssm_package_result.changed == false
+          - ssm_service_result.changed == false
+          - ssm_sudo_result.changed == false
+        success_msg: "All tests passed"

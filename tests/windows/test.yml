@@ -1,5 +1,0 @@
----
-- name: ansible-role-amazon-ssm
-  hosts: windows-machines
-  roles:
-    - ansible-role-amazon-ssm

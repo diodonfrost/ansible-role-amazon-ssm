@@ -3,6 +3,10 @@ dist: bionic
 services:
   - docker
 
+language: python
+python:
+  - "3.7"
+
 env:
   - distribution: centos-8
   - distribution: centos-7
@@ -31,10 +35,10 @@ env:
   - distribution: archlinux-rolling
 
 before_install:
-  - sudo apt-get -qq update
+  - 'docker pull diodonfrost/${distribution}-ansible:latest'
 
 install:
-  - python3 -m pip install ansible==2.9.4 molecule==3.0.2 docker==4.2.2
+  - pip install ansible==2.9.4 molecule==3.0.2 docker==4.2.2
 
 script:
   - distribution=${distribution} molecule test

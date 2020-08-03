@@ -1,0 +1,6 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  tasks:
+    - win_shell: echo "nothing to do"

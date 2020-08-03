@@ -99,75 +99,26 @@ Remove sudo access to the ssm-user account on Linux instances
 
 The preferred way of locally testing the role is to use Docker. You will have to install Docker on your system.
 
-You can also use Docker and Virtualbox with Docker to run tests locally. You will have to install Virtualbox and Docker on your system. For all our tests we use test-kitchen.
-
-Next install test-kitchen:
-
-```shell
-# Install dependencies
-gem install bundler
-bundle install
-```
+You can also use Virtualbox to run Windows tests locally. You will have to install Virtualbox on your system. For all our tests we use molecule.
 
 ### Testing with Docker
 
 ```shell
-# List all tests with kitchen
-kitchen list
+# Test role on CentOS 8
+distribution=centos-8 molecule test
 
-# fast test on one machine
-kitchen test default-centos-7
+# Test role on Ubuntu 20.04
+distribution=ubuntu-20.04 molecule test
 
-# test on all machines
-kitchen test
-
-# for development, create environment
-kitchen create default-centos-7
-
-# Apply ansible playbook
-kitchen converge default-centos-7
-
-# Apply inspec tests
-kitchen verify default-centos-7
+# Test role on Opensuse Leap
+distribution=opensuse-leap molecule test
 ```
 
 ### Testing with Virtualbox
 
 ```shell
-# Specify kitchen file on Linux
-export KITCHEN_YAML=.kitchen-vagrant.yml
-
-# fast test on one machine
-kitchen test default-centos-7
-```
-
-### Testing on Windows with Virtualbox
-
-Windows can only be test with Virtualbox provider,do not use 'kitchen test' command for testing Windows environment. There 4 steps you will be using with test-kitchen as part of your workflow.
-
-First of all we must set the kitchen file:
-```shell
-# For testing Windows
-export KITCHEN_YAML=.kitchen-windows.yml
-```
-
-Provision the virtual machines, a Linux machine to run Ansible and Windows machines to apply playbook again:
-```shell
-# deploy machines
-kitchen create
-
-# Launch playbook
-kitchen converge
-```
-
-Finaly launch inspec tests:
-```shell
-kitchen verify
-```
-
-For cleaning environment use:
-```shell
-kitchen destroy
+# Test role on Windows
+molecule test -s windows
 ```
 
 ## License

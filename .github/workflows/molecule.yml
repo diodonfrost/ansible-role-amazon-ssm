@@ -35,6 +35,8 @@ jobs:
           - oraclelinux-6
           - amazonlinux-2
           - amazonlinux-1
+          - opensuse-leap
+          - opensuse-tumbleweed
           - opensuse-13.2
           - opensuse-15
           - opensuse-15.1

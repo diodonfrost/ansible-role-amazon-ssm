@@ -29,6 +29,8 @@ env:
   - distribution: oraclelinux-6
   - distribution: amazonlinux-2
   - distribution: amazonlinux-1
+  - distribution: opensuse-leap
+  - distribution: opensuse-tumbleweed
   - distribution: opensuse-13.2
   - distribution: opensuse-15
   - distribution: opensuse-15.1

@@ -96,21 +96,30 @@ Remove sudo access to the ssm-user account on Linux instances
 
 ## Local Testing
 
-The preferred way of locally testing the role is to use Docker. You will have to install Docker on your system.
+This project uses [Molecule](http://molecule.readthedocs.io/) to aid in the
+development and testing.
 
-You can also use Virtualbox to run Windows tests locally. You will have to install Virtualbox on your system. For all our tests we use molecule.
+To develop or test you'll need to have installed the following:
+
+* Linux (e.g. [Ubuntu](http://www.ubuntu.com/))
+* [Docker](https://www.docker.com/)
+* [Python](https://www.python.org/) (including python-pip)
+* [Ansible](https://www.ansible.com/)
+* [Molecule](http://molecule.readthedocs.io/)
+* [Virtualbox](https://www.virtualbox.org/) (windows test only)
+* [Vagrant](https://www.vagrantup.com/downloads.html) (windows test only)
 
 ### Testing with Docker
 
 ```shell
 # Test role on CentOS 8
-distribution=centos-8 molecule test
+image=ansible-centos:8 molecule test
 
 # Test role on Ubuntu 20.04
-distribution=ubuntu-20.04 molecule test
+image=ansible-ubuntu:20.04 molecule test
 
 # Test role on Opensuse Leap
-distribution=opensuse-leap molecule test
+image=ansible-opensuse:leap molecule test
 ```
 
 ### Testing with Virtualbox

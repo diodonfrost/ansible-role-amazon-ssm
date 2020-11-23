@@ -1,6 +1,6 @@
 # ansible-role-amazon-ssm
 
-[![Molecule](https://github.com/diodonfrost/ansible-role-amazon-ssm/workflows/Molecule/badge.svg)](https://github.com/diodonfrost/ansible-role-amazon-ssm/actions)
+[![molecule](https://github.com/diodonfrost/ansible-role-amazon-ssm/workflows/molecule/badge.svg)](https://github.com/diodonfrost/ansible-role-amazon-ssm/actions)
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.amazon_ssm-660198.svg)](https://galaxy.ansible.com/diodonfrost/amazon_ssm)
 
 This role provide a compliance for install amazon-ssm on your target host.

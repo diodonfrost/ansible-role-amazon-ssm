@@ -1,4 +1,4 @@
-name: Molecule
+name: molecule
 
 on:
   push:

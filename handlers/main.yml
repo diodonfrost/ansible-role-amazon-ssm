@@ -4,3 +4,13 @@
 - name: Linux systemd reload
   systemd:
     daemon_reload: yes
+
+- name: Linux | Restart amazon ssm agent
+  service:
+    name: "{{ ssm_service }}"
+    state: restarted
+
+- name: Windows | Restart amazon ssm agent
+  win_service:
+    name: "{{ ssm_service }}"
+    state: restarted

@@ -14,3 +14,11 @@
     name: "{{ ssm_service }}"
     start_mode: auto
     state: started
+
+- name: Windows | Register on-premise instance
+  win_shell: Start-Process 'C:\Program Files\Amazon\SSM\amazon-ssm-agent.exe' -ArgumentList @("/q", "/log", "install.log", "CODE={{ activation_code }}", "ID={{ activation_id }}", "REGION={{ aws_region }}") -Wait
+  notify: Windows | Restart amazon ssm agent
+  when:
+    - activation_code
+    - activation_id
+    - aws_region

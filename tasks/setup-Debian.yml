@@ -39,3 +39,11 @@
     content: "{{ allow_sudo | ternary('ssm-user ALL=(ALL) NOPASSWD:ALL', '#User rules for ssm-user') }}"
     dest: /etc/sudoers.d/ssm-agent-users
     mode: '0440'
+
+- name: Debian | Register on-premise instance
+  command: "amazon-ssm-agent -register -code {{ activation_code }} -id {{ activation_id }} -region {{ aws_region }}"
+  notify: Linux | Restart amazon ssm agent
+  when:
+    - activation_code
+    - activation_id
+    - aws_region

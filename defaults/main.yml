@@ -12,3 +12,7 @@ activation_code:
 
 # (Optional) Setup aws region, used with on-premise instances
 aws_region:
+
+# Configure SSM Agent to communicate through an https or/and https proxy
+http_proxy_url:
+https_proxy_url:

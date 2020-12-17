@@ -1,0 +1,45 @@
+---
+# Configure http/https proxy
+# https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-proxy-with-ssm-agent.html
+
+- name: Linux | Configure proxy with upstart
+  lineinfile:
+    path: /etc/init.d/amazon-ssm-agent.override
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    owner: root
+    group: root
+  notify: Linux | Restart amazon ssm agent
+  when:
+    - ansible_system == "Linux"
+    - ansible_service_mgr == "upstart"
+  with_items:
+    - { regexp: '^env http_proxy', line: 'env http_proxy={{ http_proxy_url }}' }
+    - { regexp: '^env https_proxy', line: 'env https_proxy={{ https_proxy_url }}' }
+    - { regexp: '^env no_proxy=', line: 'env no_proxy=169.254.169.254' } # instance metadata endpoint
+
+- name: Linux | Configure proxy with systemd
+  lineinfile:
+    path: "{{ ssm_systemd_file }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    insertafter: '\[Service\]'
+    owner: root
+    group: root
+  notify: Linux | Restart amazon ssm agent
+  when:
+    - ansible_system == "Linux"
+    - ansible_service_mgr == "systemd"
+  with_items:
+    - { regexp: '^Environment="http_proxy', line: 'Environment="http_proxy={{ http_proxy_url }}"' }
+    - { regexp: '^Environment="https_proxy', line: 'Environment="https_proxy={{ https_proxy_url }}"' }
+    - { regexp: '^Environment="no_proxy', line: 'Environment="no_proxy=169.254.169.254"' } # instance metadata endpoint
+
+- name: Windows | Configure proxy
+  win_regedit:
+    path: 'HKLM:\SYSTEM\CurrentControlSet\Services\AmazonSSMAgent'
+    name: Environment
+    data: ['http_proxy={{ http_proxy_url }}', 'https_proxy={{ https_proxy_url }}', 'no_proxy=169.254.169.254']
+    type: multistring
+  notify: Windows | Restart amazon ssm agent
+  when: ansible_system == "Win32NT"

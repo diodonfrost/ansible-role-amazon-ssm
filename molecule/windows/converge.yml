@@ -10,3 +10,5 @@
         activation_id: "{{ lookup('env', 'activation_id') | default('', true) }}"
         activation_code: "{{ lookup('env', 'activation_code') | default('', true) }}"
         aws_region: "{{ lookup('env', 'aws_region') | default('', true) }}"
+        http_proxy_url: "{{ lookup('env', 'http_proxy_url') | default('', true) }}"
+        https_proxy_url: "{{ lookup('env', 'https_proxy_url') | default('', true) }}"

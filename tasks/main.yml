@@ -6,3 +6,7 @@
 
 - name: Install aws ssm agent
   include_tasks: "setup-{{ ansible_os_family }}.yml"
+
+- name: Configure proxy
+  include_tasks: proxy.yml
+  when: http_proxy_url or https_proxy_url

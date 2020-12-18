@@ -7,6 +7,9 @@
 - name: Install aws ssm agent
   include_tasks: "setup-{{ ansible_os_family }}.yml"
 
+- name: Managing ssm-user account permissions
+  include_tasks: ssm-user.yml
+
 - name: Register on-premise hosts
   include_tasks: register.yml
   when:

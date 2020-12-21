@@ -2,34 +2,32 @@
 # Install aws ssm agent on Debian family system
 
 - name: Debian | Check if snap is available
-  command: snap version
+  stat:
+    path: /usr/bin/snap
   register: snap_available
-  ignore_errors: yes
-  changed_when: false
-  failed_when: false
 
 - name: Debian | Install with apt aws ssm agent
   apt:
     deb: "{{ ssm_package_url }}"
     state: present
-  when: snap_available.rc > 0
+  when: not snap_available.stat.exists
 
 - name: Debian | Manage aws ssm agent service
   service:
     name: "{{ ssm_service }}"
     state: started
     enabled: yes
-  when: snap_available.rc > 0
+  when: not snap_available.stat.exists
 
 - name: Debian | Install with snap aws ssm agent
   snap:
     name: amazon-ssm-agent
     classic: yes
-  when: snap_available.rc == 0
+  when: snap_available.stat.exists
 
 - name: Debian | Manage snap aws ssm agent service
   service:
     name: snap.amazon-ssm-agent.amazon-ssm-agent.service
     state: started
     enabled: yes
-  when: snap_available.rc == 0
+  when: snap_available.stat.exists

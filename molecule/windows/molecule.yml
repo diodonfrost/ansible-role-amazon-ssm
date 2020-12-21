@@ -3,6 +3,10 @@ driver:
   name: vagrant
   provider:
     name: VBox
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
 platforms:
   - name: windows
     box: diodonfrost/${image:-windows-2k16}

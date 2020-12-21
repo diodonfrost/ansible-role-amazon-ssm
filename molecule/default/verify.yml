@@ -2,10 +2,12 @@
 - name: Verify
   hosts: all
   tasks:
-    - set_fact:
+    - name: Linux | Define default aws-ssm service name
+      set_fact:
         amazon_ssm_service: "amazon-ssm-agent"
 
-    - set_fact:
+    - name: Linux | Define aws-ssm service name for Ubuntu>18.04 system
+      set_fact:
         amazon_ssm_service: "snap.amazon-ssm-agent.amazon-ssm-agent.service"
       when:
         - ansible_facts['distribution'] == "Ubuntu"
@@ -26,6 +28,6 @@
     - name: Linux | Verify commands outputs
       assert:
         that:
-          - ssm_service_result.changed == false
+          - not ssm_service_result.changed
           - ssm_sudo_result.stat.exists
         success_msg: "All tests passed"

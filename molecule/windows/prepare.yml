@@ -1,6 +1,7 @@
 ---
-- name: Converge
+- name: Prepare
   hosts: all
   become: true
   tasks:
-    - win_shell: echo "nothing to do"
+    - name: Do not used default molecule prepare task
+      win_shell: echo "nothing to do"

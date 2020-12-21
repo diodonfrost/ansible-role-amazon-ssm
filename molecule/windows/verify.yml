@@ -13,5 +13,5 @@
     - name: Windows | Verify commands outputs
       assert:
         that:
-          - ssm_service_result.changed == false
+          - not ssm_service_result.changed
         success_msg: "All tests passed"

@@ -10,9 +10,9 @@
 - name: Archlinux | Amazon ssm agent folder
   file:
     path: /etc/amazon/ssm
-    recurse: yes
     owner: root
     group: root
+    mode: '0755'
     state: directory
 
 - name: Archlinux | Amazon ssm config

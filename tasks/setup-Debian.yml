@@ -22,9 +22,9 @@
   when: snap_available.rc > 0
 
 - name: Debian | Install with snap aws ssm agent
-  command: snap install amazon-ssm-agent --classic
-  args:
-    creates: /snap/bin/amazon-ssm-agent.ssm-cli
+  snap:
+    name: amazon-ssm-agent
+    classic: yes
   when: snap_available.rc == 0
 
 - name: Debian | Manage snap aws ssm agent service

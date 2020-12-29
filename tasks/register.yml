@@ -8,11 +8,16 @@
   when: ansible_system == "Linux"
 
 - name: Windows | Register on-premise host
-  win_shell: |
-    Start-Process 'C:\Program Files\Amazon\SSM\amazon-ssm-agent.exe' `
-    -ArgumentList @("/q", "/log", "install.log", `
-    "CODE={{ activation_code }}", `
-    "ID={{ activation_id }}", `
-    "REGION={{ aws_region }}") -Wait
-  notify: Windows | Restart amazon ssm agent
+  win_package:
+    path: "{{ ssm_package_url }}"
+    product_id: amazon-ssm-agent
+    creates_path: C:\Program Files\Amazon\SSM\amazon-ssm-agent.exe
+    arguments:
+      - /q
+      - /log install.log
+      - CODE={{ activation_code }}
+      - ID={{ activation_id }}
+      - REGION={{ aws_region }}
+      - -Wait
+    state: present
   when: ansible_system == "Win32NT"

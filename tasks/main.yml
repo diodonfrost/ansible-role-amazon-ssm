@@ -4,6 +4,9 @@
 - name: Include OS specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
+- name: Define processor architecture
+  include_tasks: "setup-architecture.yml"
+
 - name: Install aws ssm agent
   include_tasks: "setup-{{ ansible_os_family }}.yml"
 

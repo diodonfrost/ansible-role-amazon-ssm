@@ -1,6 +1,6 @@
 ---
 # Variable for Debian system
 
-ssm_package_url: https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb
+ssm_package_url: "https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_{{ base_arch | default('amd64') }}/amazon-ssm-agent.deb"
 ssm_service: amazon-ssm-agent
 ssm_systemd_file: /etc/systemd/system/amazon-ssm-agent.service

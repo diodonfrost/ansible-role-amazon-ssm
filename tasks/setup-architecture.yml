@@ -1,0 +1,12 @@
+---
+# Define the processor architecture to be used, x86/arm and 32/64 bits.
+
+- name: x86 | Define processor architecture 32/64 bits
+  set_fact:
+    base_arch: "{{ (ansible_architecture == 'x86_64') | ternary('amd64', '386') }}"
+  when: ansible_architecture == 'x86_64' or ansible_architecture == 'i386'
+
+- name: Arm | Define processor architecture 32/64 bits
+  set_fact:
+    base_arch: "{{ (ansible_architecture == 'aarch64') | ternary('arm64', 'arm') }}"
+  when: ansible_architecture == 'aarch64' or ansible_architecture == 'armv7l'

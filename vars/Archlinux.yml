@@ -1,7 +1,7 @@
 ---
 # Variable for Archlinux system
 
-ssm_package_url: https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent
+ssm_package_url: https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_{{ base_arch }}/amazon-ssm-agent
 ssm_service: amazon-ssm-agent
 
 systemd_config: |

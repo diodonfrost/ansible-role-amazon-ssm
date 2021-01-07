@@ -40,7 +40,6 @@ jobs:
           - ansible-opensuse:13.2
           - ansible-opensuse:15
           - ansible-opensuse:15.1
-          - ansible-archlinux:latest
 
     steps:
       - name: Checkout repository

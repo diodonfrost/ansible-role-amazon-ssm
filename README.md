@@ -20,6 +20,8 @@ Supported platforms:
     - 6
 - name: Fedora
   versions:
+    - 32
+    - 31
     - 30
     - 29
     - 28
@@ -64,6 +66,18 @@ This role does not have a variable
 # Enable or disable sudo access for ssm-user on Linux instances
 allow_sudo: true
 
+# (Optional) Setup activation id, used with on-premise instances
+activation_id:
+
+# (Optional) Setup activation code, used with on-premise instances
+activation_code:
+
+# (Optional) Setup aws region, used with on-premise instances
+aws_region:
+
+# Configure SSM Agent to communicate through an https or/and https proxy
+http_proxy_url:
+https_proxy_url:
 ```
 
 ## Dependencies
@@ -112,8 +126,11 @@ To develop or test you'll need to have installed the following:
 ### Testing with Docker
 
 ```shell
+# Install requirements
+pip install -r requirements-dev.txt
+
 # Test role on CentOS 8
-image=ansible-centos:8 molecule test
+molecule test
 
 # Test role on Ubuntu 20.04
 image=ansible-ubuntu:20.04 molecule test

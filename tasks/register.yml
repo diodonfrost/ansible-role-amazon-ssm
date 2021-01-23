@@ -2,10 +2,10 @@
 # Register on-premise host to amazon ssm
 # https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html
 
-- name: Linux | Register on-premise host
-  command: "amazon-ssm-agent -register -code {{ activation_code }} -id {{ activation_id }} -region {{ aws_region }}"
-  notify: Linux | Restart amazon ssm agent
-  when: ansible_system == "Linux"
+- name: Linux/Darwin | Register on-premise host
+  command: "{{ ssm_agent_bin }} -register -code {{ activation_code }} -id {{ activation_id }} -region {{ aws_region }}"
+  notify: "{{ ansible_system }} | Restart amazon ssm agent"
+  when: ansible_system == "Linux" or ansible_system == "Darwin"
 
 - name: Windows | Register on-premise host
   win_package:

@@ -10,6 +10,11 @@
     name: "{{ ssm_service }}"
     state: restarted
 
+- name: Darwin | Restart amazon ssm agent
+  community.general.launchd:
+    name: "{{ ssm_service }}"
+    state: restarted
+
 - name: Windows | Restart amazon ssm agent
   win_service:
     name: "{{ ssm_service }}"

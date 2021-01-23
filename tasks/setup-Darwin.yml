@@ -1,0 +1,17 @@
+---
+- name: Darwin | Download aws ssm agent
+  get_url:
+    url: "{{ ssm_package_url }}"
+    dest: /tmp/amazon-ssm-agent.pkg
+    mode: '0755'
+
+- name: Darwin | Install aws ssm agent
+  command: installer -pkg /tmp/amazon-ssm-agent.pkg -target /
+  args:
+    creates: "{{ ssm_agent_bin }}"
+
+- name: Darwin | Manage aws ssm agent service
+  community.general.launchd:
+    name: "{{ ssm_service }}"
+    state: started
+    enabled: yes

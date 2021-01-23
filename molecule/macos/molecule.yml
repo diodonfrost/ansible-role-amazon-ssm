@@ -1,0 +1,11 @@
+---
+driver:
+  name: vagrant
+  provider:
+    name: VBox
+platforms:
+  - name: macos
+    box: jhcook/macos-sierra
+    box_version: "10.12.6"
+    memory: 2048
+    cpus: 2

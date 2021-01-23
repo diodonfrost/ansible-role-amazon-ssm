@@ -1,0 +1,17 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  tasks:
+    - name: Darwin | Amazon ssm agent service should be started and enabled
+      community.general.launchd:
+        name: "com.amazon.aws.ssm"
+        state: started
+        enabled: yes
+      register: ssm_service_result
+
+    - name: Darwin | Verify commands outputs
+      assert:
+        that:
+          - not ssm_service_result.changed
+        success_msg: "All tests passed"

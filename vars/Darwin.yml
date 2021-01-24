@@ -4,3 +4,4 @@
 ssm_package_url: "https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/darwin_amd64/amazon-ssm-agent.pkg"
 ssm_service: com.amazon.aws.ssm
 ssm_agent_bin: /opt/aws/ssm/bin/amazon-ssm-agent
+ssm_on_premise_creds_path: /var/root/.aws/credentials

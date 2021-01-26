@@ -11,7 +11,7 @@
     creates: "{{ ssm_agent_bin }}"
 
 - name: Darwin | Manage aws ssm agent service
-  community.general.launchd:
+  launchd:
     name: "{{ ssm_service }}"
     state: started
     enabled: yes

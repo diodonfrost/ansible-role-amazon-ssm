@@ -2,7 +2,15 @@
 # Variable for Debian system
 
 ssm_package_url: "https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_{{ base_arch[ansible_architecture] | default('amd64') }}/amazon-ssm-agent.deb"
-ssm_service: amazon-ssm-agent
+ssm_service: '{%- if snap_available.stat.exists -%}
+                    snap.amazon-ssm-agent.amazon-ssm-agent.service
+                {%- else -%}
+                    amazon-ssm-agent
+                {%- endif -%}'
 ssm_systemd_file: /etc/systemd/system/amazon-ssm-agent.service
-ssm_agent_bin: amazon-ssm-agent
+ssm_agent_bin: '{%- if snap_available.stat.exists -%}
+                    /snap/amazon-ssm-agent/current/amazon-ssm-agent
+                {%- else -%}
+                    amazon-ssm-agent
+                {%- endif -%}'
 ssm_on_premise_creds_path: /root/.aws/credentials

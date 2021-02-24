@@ -27,7 +27,7 @@
 
 - name: Debian | Manage snap aws ssm agent service
   service:
-    name: snap.amazon-ssm-agent.amazon-ssm-agent.service
+    name: "{{ ssm_service }}"
     state: started
     enabled: yes
   when: snap_available.stat.exists

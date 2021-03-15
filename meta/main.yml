@@ -1,5 +1,5 @@
 galaxy_info:
-  role_name: amazon-ssm
+  role_name: amazon_ssm
   author: diodonfrost
   company: diodonfrost
   description: Ansible role for manage AWS system manager agent

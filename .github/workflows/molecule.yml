@@ -53,7 +53,7 @@ jobs:
       - name: Install Molecule
         run: |
           python -m pip install --upgrade pip
-          pip install ansible ansible-lint yamllint molecule-docker docker
+          pip install -r requirements-dev.txt
       
       - name: Block fake aws metadata
         run: sudo iptables -t nat -I PREROUTING -p tcp -d 169.254.169.254 --dport 80 -j DNAT --to-destination 127.0.0.1 

@@ -7,7 +7,11 @@ ssm_service: '{%- if snap_available.stat.exists -%}
                 {%- else -%}
                     amazon-ssm-agent
                 {%- endif -%}'
-ssm_systemd_file: /etc/systemd/system/amazon-ssm-agent.service
+ssm_systemd_file: '{%- if snap_available.stat.exists -%}
+                    /etc/systemd/system/snap.amazon-ssm-agent.amazon-ssm-agent.service
+                {%- else -%}
+                    /etc/systemd/system/amazon-ssm-agent.service
+                {%- endif -%}'
 ssm_agent_bin: '{%- if snap_available.stat.exists -%}
                     /snap/amazon-ssm-agent/current/amazon-ssm-agent
                 {%- else -%}

@@ -15,6 +15,7 @@ jobs:
       matrix:
         image:
           - almalinux:8
+          - rockylinux:8
           - centos:8
           - centos:7
           - centos:6

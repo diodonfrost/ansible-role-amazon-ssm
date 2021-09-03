@@ -10,7 +10,7 @@ systemd_config: |
   [Unit]
   Description=amazon-ssm-agent
   After=network-online.target
-  
+
   [Service]
   Type=simple
   WorkingDirectory=/usr/bin/
@@ -19,7 +19,7 @@ systemd_config: |
   Restart=on-failure
   RestartForceExitStatus=SIGPIPE
   RestartSec=15min
-  
+
   [Install]
   WantedBy=multi-user.target
 

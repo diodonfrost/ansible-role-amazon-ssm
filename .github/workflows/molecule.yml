@@ -10,6 +10,8 @@ jobs:
   test:
     name: ${{ matrix.image }}
     runs-on: ubuntu-18.04
+    env:
+      docker_namepsace: ghcr.io/diodonfrost/docker-ansible
     strategy:
       fail-fast: false
       matrix:
@@ -66,9 +68,11 @@ jobs:
       - name: Test Ansible role
         run: molecule test
         env:
+          namespace: ${{ env.docker_namepsace }}
           image: ansible-${{ matrix.image }}
 
       - name: Test Ansible role with check_mode enable
         run: molecule check
         env:
+          namespace: ${{ env.docker_namepsace }}
           image: ansible-${{ matrix.image }}

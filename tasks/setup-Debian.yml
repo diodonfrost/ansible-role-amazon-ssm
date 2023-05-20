@@ -6,7 +6,7 @@
     path: /usr/bin/snap
   register: snap_available
 
-- name: Debian | Install with apt aws ssm agent
+- name: Debian - apt | Install aws ssm agent
   apt:
     deb: "{{ ssm_package_url }}"
     state: present
@@ -19,7 +19,7 @@
     enabled: yes
   when: not snap_available.stat.exists
 
-- name: Debian | Install with snap aws ssm agent
+- name: Debian - snap | Install aws ssm agent
   snap:
     name: amazon-ssm-agent
     classic: yes

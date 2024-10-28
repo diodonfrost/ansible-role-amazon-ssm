@@ -4,6 +4,7 @@
 - name: yum | Install aws ssm agent
   yum:
     name: "{{ ssm_package_url }}"
+    disable_gpg_check: yes
     state: present
   when: ansible_pkg_mgr == "yum"
 

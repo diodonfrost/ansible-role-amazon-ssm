@@ -1,0 +1,14 @@
+---
+driver:
+  name: vagrant
+  provider:
+    name: libvirt
+platforms:
+  - name: amazon-ssm-ubuntu-22.04
+    box: generic/ubuntu2204
+    memory: 4096
+    cpus: 2
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

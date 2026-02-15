@@ -1,7 +1,6 @@
 ---
 - name: Prepare
   hosts: all
-  become: true
   tasks:
-    - name: Do not used default molecule prepare task
-      win_shell: echo "nothing to do"
+    - name: Windows | nothing to do
+      ansible.windows.win_shell: echo "nothing to do"

@@ -5,14 +5,14 @@
   yum:
     name: "{{ ssm_package_url }}"
     state: present
-  when: ansible_pkg_mgr == "yum"
+  when: ansible_facts['pkg_mgr'] == "yum"
 
 - name: dnf | Install aws ssm agent
   ansible.builtin.dnf:
     name: "{{ ssm_package_url }}"
     disable_gpg_check: yes # https://github.com/aws/amazon-ssm-agent/issues/235
     state: present
-  when: ansible_pkg_mgr == "dnf"
+  when: ansible_facts['pkg_mgr'] == "dnf"
 
 - name: RedHat | Manage aws ssm agent service
   ansible.builtin.service:

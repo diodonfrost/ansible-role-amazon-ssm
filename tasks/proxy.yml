@@ -11,8 +11,8 @@
     group: root
   notify: Linux | Restart amazon ssm agent
   when:
-    - ansible_system == "Linux"
-    - ansible_service_mgr == "upstart"
+    - ansible_facts['system'] == "Linux"
+    - ansible_facts['service_mgr'] == "upstart"
   with_items:
     - { regexp: '^env http_proxy', line: 'env http_proxy={{ http_proxy_url }}' }
     - { regexp: '^env https_proxy', line: 'env https_proxy={{ https_proxy_url }}' }
@@ -28,8 +28,8 @@
     group: root
   notify: Linux | Restart amazon ssm agent
   when:
-    - ansible_system == "Linux"
-    - ansible_service_mgr == "systemd"
+    - ansible_facts['system'] == "Linux"
+    - ansible_facts['service_mgr'] == "systemd"
   with_items:
     - { regexp: '^Environment="http_proxy', line: 'Environment="http_proxy={{ http_proxy_url }}"' }
     - { regexp: '^Environment="https_proxy', line: 'Environment="https_proxy={{ https_proxy_url }}"' }
@@ -42,4 +42,4 @@
     data: ['http_proxy={{ http_proxy_url }}', 'https_proxy={{ https_proxy_url }}', 'no_proxy=169.254.169.254']
     type: multistring
   notify: Windows | Restart amazon ssm agent
-  when: ansible_system == "Win32NT"
+  when: ansible_facts['system'] == "Win32NT"

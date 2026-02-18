@@ -7,4 +7,4 @@
     content: "{{ allow_sudo | ternary('ssm-user ALL=(ALL) NOPASSWD:ALL', '#User rules for ssm-user') }}"
     dest: /etc/sudoers.d/ssm-agent-users
     mode: '0440'
-  when: ansible_system == "Linux"
+  when: ansible_facts['system'] == "Linux"

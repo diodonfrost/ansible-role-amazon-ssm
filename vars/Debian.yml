@@ -1,7 +1,7 @@
 ---
 # Variable for Debian system
 
-ssm_package_url: "https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_{{ base_arch[ansible_architecture] | default('amd64') }}/amazon-ssm-agent.deb"
+ssm_package_url: "https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_{{ base_arch[ansible_facts['architecture']] | default('amd64') }}/amazon-ssm-agent.deb"
 ssm_service: '{%- if snap_available.stat.exists -%}
                     snap.amazon-ssm-agent.amazon-ssm-agent.service
                 {%- else -%}

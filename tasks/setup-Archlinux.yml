@@ -2,13 +2,13 @@
 # Install aws ssm agent on Archlinux
 
 - name: Archlinux | Download amazon-ssm-agent
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ ssm_package_url }}"
     dest: /usr/bin/amazon-ssm-agent
     mode: '0755'
 
 - name: Archlinux | Amazon ssm agent folder
-  file:
+  ansible.builtin.file:
     path: /etc/amazon/ssm
     owner: root
     group: root
@@ -16,7 +16,7 @@
     state: directory
 
 - name: Archlinux | Amazon ssm config
-  copy:
+  ansible.builtin.copy:
     content: "{{ ssm_agent_config | from_json | to_nice_json }}"
     dest: /etc/amazon/ssm/amazon-ssm-agent.json
     owner: root
@@ -24,7 +24,7 @@
     mode: '0644'
 
 - name: Archlinux | Amazon ssm seelog
-  copy:
+  ansible.builtin.copy:
     content: "{{ ssm_seelog_config }}"
     dest: /etc/amazon/ssm/seelog.xml
     owner: root
@@ -32,7 +32,7 @@
     mode: '0644'
 
 - name: Archlinux | Systemd configuration
-  copy:
+  ansible.builtin.copy:
     content: "{{ systemd_config }}"
     dest: /etc/systemd/system/amazon-ssm-agent.service
     owner: root
@@ -41,7 +41,7 @@
   notify: Linux systemd reload
 
 - name: Archlinux | Manage aws ssm agent service
-  service:
+  ansible.builtin.service:
     name: "{{ ssm_service }}"
     state: started
     enabled: yes

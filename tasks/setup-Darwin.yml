@@ -1,12 +1,12 @@
 ---
 - name: Darwin | Download aws ssm agent
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ ssm_package_url }}"
     dest: /tmp/amazon-ssm-agent.pkg
     mode: '0755'
 
 - name: Darwin | Install aws ssm agent
-  command: installer -pkg /tmp/amazon-ssm-agent.pkg -target /
+  ansible.builtin.command: installer -pkg /tmp/amazon-ssm-agent.pkg -target /
   args:
     creates: "{{ ssm_agent_bin }}"
 

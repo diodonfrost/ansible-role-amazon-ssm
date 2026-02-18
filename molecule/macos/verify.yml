@@ -11,7 +11,7 @@
       register: ssm_service_result
 
     - name: Darwin | Verify commands outputs
-      assert:
+      ansible.builtin.assert:
         that:
           - not ssm_service_result.changed
         success_msg: "All tests passed"

@@ -4,7 +4,7 @@
   become: yes
   tasks:
     - name: "Include ansible-role-amazon-ssm"
-      include_role:
+      ansible.builtin.include_role:
         name: "ansible-role-amazon-ssm"
       vars:
         activation_id: "{{ lookup('env', 'activation_id') | default('', true) }}"

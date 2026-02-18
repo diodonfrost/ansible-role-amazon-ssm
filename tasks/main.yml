@@ -2,21 +2,21 @@
 # tasks file for ansible-role-amazon-ssm
 
 - name: Include OS specific variables.
-  include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 - name: Install aws ssm agent
-  include_tasks: "setup-{{ ansible_os_family }}.yml"
+  ansible.builtin.include_tasks: "setup-{{ ansible_os_family }}.yml"
 
 - name: Managing ssm-user account permissions
-  include_tasks: ssm-user.yml
+  ansible.builtin.include_tasks: ssm-user.yml
 
 - name: Register on-premise hosts
-  include_tasks: register.yml
+  ansible.builtin.include_tasks: register.yml
   when:
     - activation_code
     - activation_id
     - aws_region
 
 - name: Configure proxy
-  include_tasks: proxy.yml
+  ansible.builtin.include_tasks: proxy.yml
   when: http_proxy_url or https_proxy_url

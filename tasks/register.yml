@@ -3,14 +3,14 @@
 # https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html
 
 - name: Linux/Darwin | Register on-premise host
-  command: "{{ ssm_agent_bin }} -register -code {{ activation_code }} -id {{ activation_id }} -region {{ aws_region }}"
+  ansible.builtin.command: "{{ ssm_agent_bin }} -register -code {{ activation_code }} -id {{ activation_id }} -region {{ aws_region }}"
   args:
     creates: "{{ ssm_on_premise_creds_path }}"
   notify: "{{ ansible_system }} | Restart amazon ssm agent"
   when: ansible_system == "Linux" or ansible_system == "Darwin"
 
 - name: Windows | Register on-premise host
-  win_package:
+  ansible.windows.win_package:
     path: "{{ ssm_package_url }}"
     product_id: amazon-ssm-agent
     creates_path: C:\Program Files\Amazon\SSM\amazon-ssm-agent.exe

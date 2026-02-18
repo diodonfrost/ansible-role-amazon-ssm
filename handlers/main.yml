@@ -2,11 +2,11 @@
 # handlers file for ansible-role-amazon-ssm
 
 - name: Linux systemd reload
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: yes
 
 - name: Linux | Restart amazon ssm agent
-  service:
+  ansible.builtin.service:
     name: "{{ ssm_service }}"
     state: restarted
 
@@ -16,6 +16,6 @@
     state: restarted
 
 - name: Windows | Restart amazon ssm agent
-  win_service:
+  ansible.windows.win_service:
     name: "{{ ssm_service }}"
     state: restarted

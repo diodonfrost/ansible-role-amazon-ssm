@@ -3,7 +3,7 @@
 # https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started-ssm-user-permissions.html
 
 - name: Linux | Configure sudo with aws ssm agent
-  copy:
+  ansible.builtin.copy:
     content: "{{ allow_sudo | ternary('ssm-user ALL=(ALL) NOPASSWD:ALL', '#User rules for ssm-user') }}"
     dest: /etc/sudoers.d/ssm-agent-users
     mode: '0440'

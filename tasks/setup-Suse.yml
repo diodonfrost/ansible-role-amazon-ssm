@@ -2,13 +2,13 @@
 # Install aws ssm agent on Suse family system
 
 - name: Suse | Install aws ssm agent
-  zypper:
+  community.general.zypper:
     name: "{{ ssm_package_url }}"
     disable_gpg_check: yes
     state: present
 
 - name: Suse | Manage aws ssm agent service
-  service:
+  ansible.builtin.service:
     name: "{{ ssm_service }}"
     state: started
     enabled: yes

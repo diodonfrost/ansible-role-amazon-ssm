@@ -1,6 +1,8 @@
-__pycache__
-.molecule
-.venv
+.ansible/
+*.retry
+__pycache__/
+*.pyc
 .cache
-
-/.idea
+.venv
+.molecule/
+.pytest_cache/

@@ -20,10 +20,10 @@
     }
   },
   "features": {
-    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
-  "postStartCommand": "pip install -r requirements-dev.txt",
-  "remoteEnv": { "PATH": "${containerEnv:PATH}:/home/vscode/.local/bin" },
+  "postStartCommand": "python3 -m venv /tmp/.venv && /tmp/.venv/bin/pip install -r requirements-dev.txt",
+  "remoteEnv": { "PATH": "/tmp/.venv/bin:${containerEnv:PATH}:/home/vscode/.local/bin" },
   "remoteUser": "vscode"
 }

@@ -13,7 +13,7 @@
   when:
     - ansible_facts['system'] == "Linux"
     - ansible_facts['service_mgr'] == "upstart"
-  with_items:
+  loop:
     - { regexp: '^env http_proxy', line: 'env http_proxy={{ http_proxy_url }}' }
     - { regexp: '^env https_proxy', line: 'env https_proxy={{ https_proxy_url }}' }
     - { regexp: '^env no_proxy=', line: 'env no_proxy=169.254.169.254' } # instance metadata endpoint
@@ -30,7 +30,7 @@
   when:
     - ansible_facts['system'] == "Linux"
     - ansible_facts['service_mgr'] == "systemd"
-  with_items:
+  loop:
     - { regexp: '^Environment="http_proxy', line: 'Environment="http_proxy={{ http_proxy_url }}"' }
     - { regexp: '^Environment="https_proxy', line: 'Environment="https_proxy={{ https_proxy_url }}"' }
     - { regexp: '^Environment="no_proxy', line: 'Environment="no_proxy=169.254.169.254"' } # instance metadata endpoint

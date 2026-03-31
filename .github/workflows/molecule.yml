@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     name: ${{ matrix.image }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     env:
       docker_namespace: ghcr.io/diodonfrost/docker-ansible
     strategy:

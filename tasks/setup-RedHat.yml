@@ -2,7 +2,7 @@
 # Install aws ssm agent on RedHat family system
 
 - name: yum | Install aws ssm agent
-  yum:
+  ansible.builtin.yum:
     name: "{{ ssm_package_url }}"
     state: present
   when: ansible_facts['pkg_mgr'] == "yum"

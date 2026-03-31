@@ -14,4 +14,4 @@
   launchd:
     name: "{{ ssm_service }}"
     state: started
-    enabled: yes
+    enabled: true

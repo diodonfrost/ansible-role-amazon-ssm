@@ -4,11 +4,11 @@
 - name: Suse | Install aws ssm agent
   community.general.zypper:
     name: "{{ ssm_package_url }}"
-    disable_gpg_check: yes
+    disable_gpg_check: true
     state: present
 
 - name: Suse | Manage aws ssm agent service
   ansible.builtin.service:
     name: "{{ ssm_service }}"
     state: started
-    enabled: yes
+    enabled: true

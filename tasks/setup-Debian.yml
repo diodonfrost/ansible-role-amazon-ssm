@@ -16,18 +16,18 @@
   ansible.builtin.service:
     name: "{{ ssm_service }}"
     state: started
-    enabled: yes
+    enabled: true
   when: not snap_available.stat.exists
 
 - name: Debian - snap | Install aws ssm agent
   community.general.snap:
     name: amazon-ssm-agent
-    classic: yes
+    classic: true
   when: snap_available.stat.exists
 
 - name: Debian | Manage snap aws ssm agent service
   ansible.builtin.service:
     name: "{{ ssm_service }}"
     state: started
-    enabled: yes
+    enabled: true
   when: snap_available.stat.exists

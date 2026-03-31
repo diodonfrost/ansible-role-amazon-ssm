@@ -3,7 +3,7 @@
 
 - name: Linux systemd reload
   ansible.builtin.systemd:
-    daemon_reload: yes
+    daemon_reload: true
 
 - name: Linux | Restart amazon ssm agent
   ansible.builtin.service:

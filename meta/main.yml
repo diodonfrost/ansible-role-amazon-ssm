@@ -2,46 +2,33 @@ galaxy_info:
   role_name: amazon_ssm
   author: diodonfrost
   company: diodonfrost
-  description: Ansible role for manage AWS system manager agent
-  license: license Apache
+  description: Ansible role to manage AWS Systems Manager agent
+  license: Apache-2.0
 
-  min_ansible_version: 2.8
+  min_ansible_version: "2.14"
 
   platforms:
     - name: EL
       versions:
-        - 8
-        - 7
-        - 6
+        - all
     - name: Fedora
       versions:
         - all
     - name: Debian
       versions:
-        - buster
-        - stretch
-        - jessie
+        - all
     - name: Ubuntu
       versions:
-        - disco
-        - bionic
-        - xenial
-        - trusty
+        - all
     - name: Amazon
       versions:
-        - 2017.12
-        - 2016.03
-        - 2013.09
+        - all
     - name: opensuse
       versions:
-        - 13.2
-        - 15.0
-        - 15.1
+        - all
     - name: Windows
       versions:
-        - 2016
-        - 2012R2
-        - 2008R2
+        - all
     - name: MacOSX
       versions:
         - all

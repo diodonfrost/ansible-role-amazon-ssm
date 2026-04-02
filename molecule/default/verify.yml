@@ -2,20 +2,9 @@
 - name: Verify
   hosts: all
   tasks:
-    - name: Linux | Define default aws-ssm service name
-      ansible.builtin.set_fact:
-        amazon_ssm_service: "amazon-ssm-agent"
-
-    - name: Linux | Define aws-ssm service name for Ubuntu>18.04 system
-      ansible.builtin.set_fact:
-        amazon_ssm_service: "snap.amazon-ssm-agent.amazon-ssm-agent.service"
-      when:
-        - ansible_facts['distribution'] == "Ubuntu"
-        - ansible_facts['distribution_major_version']|int >= 18
-
     - name: Linux | Amazon ssm agent service should be started and enabled
       ansible.builtin.service:
-        name: "{{ amazon_ssm_service }}"
+        name: "amazon-ssm-agent"
         state: started
         enabled: true
       register: ssm_service_result

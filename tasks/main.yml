@@ -9,14 +9,24 @@
 
 - name: Managing ssm-user account permissions
   ansible.builtin.include_tasks: ssm-user.yml
+  when: ansible_facts['system'] != "Win32NT"
 
 - name: Register on-premise hosts
-  ansible.builtin.include_tasks: register.yml
+  ansible.builtin.include_tasks: "{{ lookup('ansible.builtin.first_found', register_files) }}"
+  vars:
+    register_files:
+      - "tasks/register-{{ ansible_facts['system'] }}.yml"
+      - "tasks/register-Linux-Unix.yml"
   when:
     - activation_code
     - activation_id
     - aws_region
 
 - name: Configure proxy
-  ansible.builtin.include_tasks: proxy.yml
-  when: http_proxy_url or https_proxy_url
+  ansible.builtin.include_tasks: "{{ lookup('ansible.builtin.first_found', proxy_files) }}"
+  vars:
+    proxy_files:
+      - "tasks/proxy-{{ ansible_facts['system'] }}.yml"
+      - "tasks/proxy-Linux-Unix.yml"
+  when:
+    - http_proxy_url or https_proxy_url

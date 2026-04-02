@@ -2,7 +2,7 @@
 # Configure http/https proxy
 # https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-proxy-with-ssm-agent.html
 
-- name: Linux | Configure proxy with upstart
+- name: Linux/Unix | Configure proxy with upstart
   ansible.builtin.lineinfile:
     path: /etc/init.d/amazon-ssm-agent.override
     regexp: "{{ item.regexp }}"
@@ -10,15 +10,13 @@
     owner: root
     group: root
   notify: Linux | Restart amazon ssm agent
-  when:
-    - ansible_facts['system'] == "Linux"
-    - ansible_facts['service_mgr'] == "upstart"
+  when: ansible_facts['service_mgr'] == "upstart"
   loop:
     - { regexp: '^env http_proxy', line: 'env http_proxy={{ http_proxy_url }}' }
     - { regexp: '^env https_proxy', line: 'env https_proxy={{ https_proxy_url }}' }
     - { regexp: '^env no_proxy=', line: 'env no_proxy=169.254.169.254' } # instance metadata endpoint
 
-- name: Linux | Configure proxy with systemd
+- name: Linux/Unix | Configure proxy with systemd
   ansible.builtin.lineinfile:
     path: "{{ ssm_systemd_file }}"
     regexp: "{{ item.regexp }}"
@@ -27,19 +25,8 @@
     owner: root
     group: root
   notify: Linux | Restart amazon ssm agent
-  when:
-    - ansible_facts['system'] == "Linux"
-    - ansible_facts['service_mgr'] == "systemd"
+  when: ansible_facts['service_mgr'] == "systemd"
   loop:
     - { regexp: '^Environment="http_proxy', line: 'Environment="http_proxy={{ http_proxy_url }}"' }
     - { regexp: '^Environment="https_proxy', line: 'Environment="https_proxy={{ https_proxy_url }}"' }
     - { regexp: '^Environment="no_proxy', line: 'Environment="no_proxy=169.254.169.254"' } # instance metadata endpoint
-
-- name: Windows | Configure proxy
-  ansible.windows.win_regedit:
-    path: 'HKLM:\SYSTEM\CurrentControlSet\Services\AmazonSSMAgent'
-    name: Environment
-    data: ['http_proxy={{ http_proxy_url }}', 'https_proxy={{ https_proxy_url }}', 'no_proxy=169.254.169.254']
-    type: multistring
-  notify: Windows | Restart amazon ssm agent
-  when: ansible_facts['system'] == "Win32NT"

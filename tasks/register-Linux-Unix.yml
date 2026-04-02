@@ -1,0 +1,9 @@
+---
+# Register on-premise host to amazon ssm
+# https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html
+
+- name: Linux/Unix | Register on-premise host
+  ansible.builtin.command: "{{ ssm_agent_bin }} -register -code {{ activation_code }} -id {{ activation_id }} -region {{ aws_region }}"
+  args:
+    creates: "{{ ssm_on_premise_creds_path }}"
+  notify: "{{ ansible_facts['system'] }} | Restart amazon ssm agent"

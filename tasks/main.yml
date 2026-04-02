@@ -18,9 +18,9 @@
       - "tasks/register-{{ ansible_facts['system'] }}.yml"
       - "tasks/register-Linux-Unix.yml"
   when:
-    - activation_code
-    - activation_id
-    - aws_region
+    - activation_code is not none
+    - activation_id is not none
+    - aws_region is not none
 
 - name: Configure proxy
   ansible.builtin.include_tasks: "{{ lookup('ansible.builtin.first_found', proxy_files) }}"
@@ -29,4 +29,4 @@
       - "tasks/proxy-{{ ansible_facts['system'] }}.yml"
       - "tasks/proxy-Linux-Unix.yml"
   when:
-    - http_proxy_url or https_proxy_url
+    - (http_proxy_url is not none) or (https_proxy_url is not none)
